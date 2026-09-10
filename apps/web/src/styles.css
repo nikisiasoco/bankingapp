@@ -1,0 +1,9 @@
+/*
+ * Radix Themes owns the look. All that is left is the one thing it has no
+ * opinion about: money columns line up only if the digits are the same width
+ * and the text is right aligned.
+ */
+.amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}

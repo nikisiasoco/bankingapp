@@ -1,0 +1,30 @@
+{
+  "name": "banking-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "setup": "docker compose up -d --wait && npm run db:migrate && npm run db:migrate:test && npm run db:seed",
+    "dev": "run-p dev:api dev:web",
+    "dev:api": "npm run dev --workspace @banking/api --if-present",
+    "dev:web": "npm run dev --workspace @banking/web",
+    "db:generate": "npm run db:generate --workspace @banking/api",
+    "db:migrate": "npm run db:migrate --workspace @banking/api",
+    "db:migrate:test": "npm run db:migrate:test --workspace @banking/api",
+    "db:seed": "npm run db:seed --workspace @banking/api",
+    "test": "npm run test --workspace @banking/api",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "npm-run-all2": "^9.0.3",
+    "typescript": "^5.9.3"
+  }
+}
